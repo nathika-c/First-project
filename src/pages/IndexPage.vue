@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <div class="q-gutter-y-md column" style="max-width: 300px">
-      <q-field color="purple-12" label="Label" stack-label>
+      <q-field color="teal" label="Label" stack-label>
         <template v-slot:prepend>
           <q-icon name="event" />
         </template>
@@ -12,7 +12,7 @@
         </template>
       </q-field>
 
-      <q-field color="teal" filled label="Label" stack-label>
+      <q-field color="purple-12" filled label="Label" stack-label>
         <template v-slot:prepend>
           <q-icon name="event" />
         </template>
