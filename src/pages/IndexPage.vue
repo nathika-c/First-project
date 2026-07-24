@@ -1,82 +1,105 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+<div class="q-pa-md">
+  <div class="q-gutter-y-md column" style="max-width: 300px">
+    <q-field color="purple-12" label="Label" stack-label>
+      <template v-slot:prepend>
+        <q-icon name="event" />
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+    </q-field>
 
-    <q-form
-      @submit="onSubmit"
-      @reset="onReset"
-      class="q-gutter-md"
+    <q-field color="teal" filled label="Label" stack-label>
+      <template v-slot:prepend>
+        <q-icon name="event" />
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+    </q-field>
+
+    <q-field
+      color="grey-3"
+      label-color="orange"
+      outlined
+      label="Label"
+      stack-label
     >
-      <q-input
-        filled
-        v-model="name"
-        label="ชื่อ-สกุล *"
-        hint="ชื่อและนามสกุล"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'กรุณาพิมพ์ชื่อ']"
-      />
+      <template v-slot:append>
+        <q-icon name="event" color="orange" />
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+    </q-field>
 
-      <q-input
-        filled
-        type="number"
-        v-model="age"
-        label="อายุ *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'กรุณาใส่อายุ',
-          val => val > 0 && val < 100 || 'กรุณาใส่อายุจริง'
-        ]"
-      />
+    <q-field
+      color="lime-11"
+      bg-color="green"
+      filled
+      label="Label"
+      stack-label
+    >
+      <template v-slot:prepend>
+        <q-icon name="event" />
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+    </q-field>
 
-      <q-toggle v-model="accept" label="ยอมรับ" />
+    <q-field color="teal" outlined label="Label" stack-label>
+      <template v-slot:append>
+        <q-avatar>
+          <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
+        </q-avatar>
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+    </q-field>
 
-      <div>
-        <q-btn label="ยอมรับ" type="submit" color="primary"/>
-        <q-btn label="ยกเลิก" type="reset" color="primary" flat class="q-ml-sm" />
-      </div>
-    </q-form>
+    <q-field
+      color="orange"
+      standout
+      bottom-slots
+      :model-value="text"
+      label="Label"
+      stack-label
+      counter
+      clearable
+    >
+      <template v-slot:prepend>
+        <q-icon name="place" />
+      </template>
+      <template v-slot:control>
+        <div class="self-center full-width no-outline" tabindex="0">{{
+          text
+        }}</div>
+      </template>
+      <template v-slot:append>
+        <q-icon name="favorite" />
+      </template>
 
+      <template v-slot:hint> Field hint </template>
+    </q-field>
   </div>
+</div>
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
 import { ref } from 'vue'
 
-export default {
-  setup () {
-    const $q = useQuasar()
-
-    const name = ref(null)
-    const age = ref(null)
-    const accept = ref(false)
-    return {
-      name,
-      age,
-      accept,
-      onSubmit () {
-        if (accept.value !== true) {
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'คุณจำเป็นต้องยอมรับ'
-          })
-        }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'ข้อมูลได้รับการยืนยัน'
-          })
-        }
-      },
-      onReset () {
-        name.value = null
-        age.value = null
-        accept.value = false
-      }
-    }
-  }
-}
+const text = ref('Field content')
 </script>
